@@ -33,12 +33,12 @@ class Ball:
     def detect_collision(self, paddle):
         current_heading = self.ball.heading()
 
-        if self.ball.position()[1] + 5 > UPPER_LIMIT or self.ball.position()[1] - 5 < LOWER_LIMIT:
+        if self.ball.position()[1] + 5 >= UPPER_LIMIT or self.ball.position()[1] - 5 <= LOWER_LIMIT:
             self.ball.setheading(360 - current_heading)
 
-        if self.ball.position()[0] + 5 > RIGHT_LIMIT or self.ball.position()[0] - 5 < LEFT_LIMIT:
+        if self.ball.position()[0] + 5 >= RIGHT_LIMIT or self.ball.position()[0] - 5 <= LEFT_LIMIT:
             # if paddle.position()[1] + 40 < self.ball.position()[0] > paddle.position()[1] - 40:
-            if (0 < current_heading < 90) or (180 < current_heading < 270):
-                self.ball.setheading(90 + current_heading)
+            if (0 <= current_heading <= 90) or (180 <= current_heading <= 270):
+                self.ball.setheading(current_heading + 90)
             else:
-                self.ball.setheading(360 - current_heading)
+                self.ball.setheading(current_heading - 90)
