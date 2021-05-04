@@ -19,6 +19,7 @@ class Ball:
         self.ball.shapesize(stretch_wid=0.5)
 
         self.ball.sety(r.randint(-150, 160))
+# TODO: 1. Do not forget to fix this after debugging
         # self.ball.setheading(r.choice([r.randint(0, 45), r.randint(315, 360), r.randint(135, 225)]))
         self.ball.setheading(115)
         self.ball.speed(0.5)
@@ -30,6 +31,7 @@ class Ball:
     def increase_speed(self):
         self.ball_speed = 7
 
+# TODO: 2. Collision does not work appropriately at the moment. Might have to refactor the whole approach.
     def detect_collision(self, paddle):
         current_heading = self.ball.heading()
 
