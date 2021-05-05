@@ -36,6 +36,7 @@ class Ball:
 
         # The coordinate system works with negative integers as well (ex. -20: 360 - 20 = 340ª)  !!
         # Checking if the ball is hitting the top and lower walls and bouncing off of them.
+        # Bouncing changes the direction the ball is heading by changing the heading in angle degrees.
         if self.ball.position()[1] + 5 >= UPPER_LIMIT or self.ball.position()[1] - 5 <= LOWER_LIMIT:
             self.ball.setheading(-current_heading)
 
@@ -45,7 +46,7 @@ class Ball:
             self.ball.setheading(180 - current_heading)
             self.increase_speed()
 
-        # Check if ball is hitting the left paddle - player 2 / Computer
+        # Check if ball is hitting the right paddle - player 2 / Computer
         if self.ball.position()[0] + 5 >= RIGHT_LIMIT and \
                 other_player.position()[1] + 40 >= self.ball.position()[1] >= other_player.position()[1] - 40:
             self.ball.setheading(180 - current_heading)
