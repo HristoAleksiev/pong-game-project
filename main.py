@@ -18,7 +18,7 @@ game_end = False
 player_1 = Paddle("Player_1")
 player_2 = Paddle("Player_2")
 field = Field()
-score = ScoreBoard(scr)
+score = ScoreBoard()
 ball = Ball()
 
 
@@ -37,6 +37,6 @@ while not game_end:
     scr.onkeypress(fun=player_2.move_up, key="w")
     scr.onkeypress(fun=player_2.move_down, key="s")
 
-    ball.move(player_1, player_2)
+    ball.move(player_1, player_2, score)
 
     t.sleep(0.001)
