@@ -34,6 +34,9 @@ while not game_end:
     scr.onkeypress(fun=player_1.move_up, key="Up")
     scr.onkeypress(fun=player_1.move_down, key="Down")
 
-    ball.move(player_1)
+    scr.onkeypress(fun=player_2.move_up, key="w")
+    scr.onkeypress(fun=player_2.move_down, key="s")
+
+    ball.move(player_1, player_2)
 
     t.sleep(0.001)

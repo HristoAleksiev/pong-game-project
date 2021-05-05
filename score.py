@@ -14,7 +14,7 @@ class ScoreBoard:
         self.writer.sety(170)
 
         self.writer.setx(-140)
-        self.writer.write(arg=self.left_score, font=("Arial", 70, "normal"))
+        self.writer.write(arg=self.left_sScore, font=("Arial", 70, "normal"))
 
         self.writer.setx(90)
         self.writer.write(arg=self.right_score, font=("Arial", 70, "normal"))

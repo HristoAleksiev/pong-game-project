@@ -24,23 +24,29 @@ class Ball:
         self.ball.setheading(115)
         self.ball.speed(0.5)
 
-    def move(self, paddle):
-        self.detect_collision(paddle)
+    def move(self, player, other_player):
+        self.detect_collision(player, other_player)
         self.ball.forward(self.ball_speed)
 
     def increase_speed(self):
         self.ball_speed = 7
 
-# TODO: 2. Collision does not work appropriately at the moment. Might have to refactor the whole approach.
-    def detect_collision(self, paddle):
+    def detect_collision(self, player, other_player):
         current_heading = self.ball.heading()
 
+        # The coordinate system works with negative integers as well (ex. -20: 360 - 20 = 340ª)  !!
+        # Checking if the ball is hitting the top and lower walls and bouncing off of them.
         if self.ball.position()[1] + 5 >= UPPER_LIMIT or self.ball.position()[1] - 5 <= LOWER_LIMIT:
-            self.ball.setheading(360 - current_heading)
+            self.ball.setheading(-current_heading)
 
-        if self.ball.position()[0] + 5 >= RIGHT_LIMIT or self.ball.position()[0] - 5 <= LEFT_LIMIT:
-            # if paddle.position()[1] + 40 < self.ball.position()[0] > paddle.position()[1] - 40:
-            if (0 <= current_heading <= 90) or (180 <= current_heading <= 270):
-                self.ball.setheading(current_heading + 90)
-            else:
-                self.ball.setheading(current_heading - 90)
+        # Check if ball is hitting the left paddle - player 1
+        if self.ball.position()[0] - 5 <= LEFT_LIMIT and \
+                player.position()[1] + 40 >= self.ball.position()[1] >= player.position()[1] - 40:
+            self.ball.setheading(180 - current_heading)
+            self.increase_speed()
+
+        # Check if ball is hitting the left paddle - player 2 / Computer
+        if self.ball.position()[0] + 5 >= RIGHT_LIMIT and \
+                other_player.position()[1] + 40 >= self.ball.position()[1] >= other_player.position()[1] - 40:
+            self.ball.setheading(180 - current_heading)
+            self.increase_speed()
